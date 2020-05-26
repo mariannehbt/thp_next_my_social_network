@@ -6,14 +6,19 @@ import { fetchPosts} from '../redux/posts/postsActions';
 const Home = (props) => {
 	const posts = useSelector(state => state.posts);
 	const dispatch = useDispatch();
-	const postsList = posts.map((post, key) =>(
+	const postsList = posts.reverse().map((post, key) =>(
 		<div key={key}>
-			<h5>{post.text} ({post.updated_at})</h5>
+			<div className='card my-3'>
+				<div className='card-body'>
+					<h5 className='card-title'>{post.text}</h5>
+					<p className='card-text'>{post.updated_at}</p>
+				</div>
+			</div>
 		</div>
 	));
 
 	return (
-		<div>
+		<div className='container'>
 			<h1>Home</h1>
 			<h2>Welcome on My Social Network.</h2>
 			<h3>This website is a training to Redux and React.</h3>

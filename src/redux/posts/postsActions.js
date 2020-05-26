@@ -29,7 +29,7 @@ export const fetchPosts = () => {
 			if (response.status === 'error') {
 				dispatch(fetchPostsFailure(response.message));
 			} else {
-				dispatch(fetchPostsSuccess(response[0].text));
+				dispatch(fetchPostsSuccess(response));
 			};
 		});
 	};

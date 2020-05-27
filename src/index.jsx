@@ -12,9 +12,11 @@ import Auth from './pages/Auth';
 import Home from './pages/Home';
 import Posts from './pages/Posts';
 import Users from './pages/Users';
-// Bootstrap
+// Bootstrap & CSS
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
+import './index.css'
+
 
 const App = () => {
 	return (

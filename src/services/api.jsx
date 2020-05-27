@@ -44,3 +44,28 @@ export const register = (username, email, password) => {
 	.catch((error) => console.error('error:', error));
 	console.log(data);
 };
+
+export const login = (identifier, password) => {
+	const data = {
+		identifier: identifier,
+		password: password
+	};
+
+	fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local', {
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	})
+	.then((response) => response.json())
+	.then((response) => {
+		if (response.error != null) {
+			alert(response.message[0].messages[0].message);
+		} else {
+			console.log(response);
+		}
+	})
+	.catch((error) => console.error('error:', error));
+	console.log(data);
+};

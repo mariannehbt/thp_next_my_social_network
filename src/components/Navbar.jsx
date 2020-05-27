@@ -31,6 +31,7 @@ const Navbar = () => {
 					</button>
 					<div className='dropdown-menu w-100'>
 						<Link className='dropdown-item' to='/auth/local/register'>Sign In</Link>
+						<Link className='dropdown-item' to='/auth/local'>Login</Link>
 					</div>
 				</div>
 			</div>

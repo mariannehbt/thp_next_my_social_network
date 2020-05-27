@@ -17,14 +17,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
 import './index.css'
 
-
 const App = () => {
 	return (
 		<Provider store={store}>
 			<Router>
 				<Navbar />
 				<Switch>
-					<Route path='/auth'>
+					<Route exact path='/auth'>
 						<Auth />
 					</Route>
 					<Route exact path='/'>

@@ -15,7 +15,7 @@ const SignIn = () => {
 			<h2>Sign In</h2>
 			<form onSubmit={submit}>
 				<div className='form-group'>
-					<label className='sr-only' >Username</label>
+					<label className='sr-only'>Username</label>
 					<div className='input-group mb-2'>
 						<div className='input-group-prepend'>
 							<div className='input-group-text'>@</div>

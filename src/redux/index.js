@@ -1,1 +1,1 @@
-export { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure, fetchPosts} from './posts/postsActions';
+export { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from './posts/postsActions';

@@ -19,18 +19,3 @@ export const fetchPostsFailure = (error) => {
 		error
 	};
 };
-
-export const fetchPosts = () => {
-	return (dispatch) => {
-		dispatch(fetchPostsRequest());
-		fetch('https://api-minireseausocial.mathis-dyk.fr/posts')
-		.then((response) => response.json())
-		.then((response) => {
-			if (response.status === 'error') {
-				dispatch(fetchPostsFailure(response.message));
-			} else {
-				dispatch(fetchPostsSuccess(response));
-			};
-		});
-	};
-};

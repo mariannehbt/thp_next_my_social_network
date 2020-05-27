@@ -1,7 +1,7 @@
 import React from 'react';
 // import { connect } from 'react-redux';
+import * as API from '../services/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchPosts} from '../redux/posts/postsActions';
 import moment from 'moment';
 
 const Home = (props) => {
@@ -38,7 +38,7 @@ const Home = (props) => {
 							<div className='w-100 text-white'>
 								<h1 className='display-3'>My Social Network</h1>
 								<p className='lead mb-0'>Welcome on My Social Network</p>
-								<button className='btn btn-outline-info mt-3' onClick={() => dispatch(fetchPosts())}>See posts</button>
+								<button className='btn btn-outline-info mt-3' onClick={() => dispatch(API.fetchPosts())}>See posts</button>
 							</div>
 						</div>
 					</div>

@@ -25,12 +25,17 @@ const Navbar = () => {
 						</div>
 					</li>
 				</ul>
+				<div className='btn-group' role='group'>
+					<button id='btnGroupDrop1' type='button' className='btn btn-secondary dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+						Connexion
+					</button>
+					<div className='dropdown-menu w-100'>
+						<Link className='dropdown-item' to='/auth/local/register'>Sign In</Link>
+					</div>
+				</div>
 			</div>
 		</nav>
 	);
 };
 
 export default Navbar;
-
-
-

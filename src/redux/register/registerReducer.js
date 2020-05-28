@@ -1,8 +1,9 @@
-import { FETCH_REGISTER_REQUEST, FETCH_REGISTER_SUCCESS, FETCH_REGISTER_FAILURE } from './registerType';
+import Cookies from 'js-cookie';
+import { FETCH_REGISTER_REQUEST, FETCH_REGISTER_SUCCESS, FETCH_REGISTER_FAILURE, FETCH_UNREGISTER_SUCCESS } from './registerType';
 
 const initialState = {
 	loading: false,
-	registration: null,
+	registration: Cookies.get('token'),
 	error: null
 };
 
@@ -24,6 +25,14 @@ const registrationReducer = (state = initialState, action) => {
 			...state,
 			loading: false,
 			error: action.error
+		};
+		case FETCH_UNREGISTER_SUCCESS:
+		Cookies.remove('token')
+		return {
+			...state,
+			loading: false,
+			registration: Cookies.get('token'),
+			error: null
 		};
 		default: return state;
 	};

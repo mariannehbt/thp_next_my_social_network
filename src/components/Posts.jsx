@@ -5,8 +5,7 @@ import moment from 'moment';
 const Posts = () => {
 	const log = useSelector(state => state.log.login);
 	const posts = useSelector(state => state.posts.posts);
-
-	console.log((log == null) ? 'login est null' : `login non null = ${log}`);
+	const register = useSelector(state => state.register.registration);
 
 	const postsList = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
 		<div key={key}>
@@ -40,7 +39,7 @@ const Posts = () => {
 		</div>
 	));
 
-	if (log == null) {
+	if (log == null && register == null) {
 		return (
 			<section className='mt-5'>
 				<div className='container'>

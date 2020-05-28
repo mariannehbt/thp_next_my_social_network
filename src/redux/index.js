@@ -1,3 +1,3 @@
-export { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure } from './login/loginActions';
+export { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure, fetchLogoutSuccess } from './log/logActions';
 export { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from './posts/postsActions';
 export { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure } from './register/registerActions';

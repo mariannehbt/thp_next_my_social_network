@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure } from '../redux/register/registerActions';
-import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure } from '../redux/login/loginActions';
+import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure, fetchLogoutSuccess } from '../redux/log/logActions';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 
 
@@ -62,6 +62,12 @@ export const login = (identifier, password) => {
 			}
 		})
 		.catch((error) => console.error('error:', error));
+	};
+};
+
+export const logout = () => {
+	return (dispatch) => {
+		dispatch(fetchLogoutSuccess());
 	};
 };
 

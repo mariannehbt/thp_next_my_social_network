@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
 import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure, fetchUnregisterSuccess } from '../redux/register/registerActions';
 import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure, fetchLogoutSuccess } from '../redux/log/logActions';
+import { fetchProfileRequest, fetchProfileSuccess, fetchProfileFailure } from '../redux/profile/profileActions';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 
 export const register = (username, email, password) => {
@@ -68,6 +69,30 @@ export const logout = () => {
 		dispatch(fetchUnregisterSuccess());
 	};
 };
+
+export const fetchProfile = () => {
+	return (dispatch) => {
+		dispatch(fetchProfileRequest());
+		fetch('https://api-minireseausocial.mathis-dyk.fr/users/me', {
+			method: 'get',
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('token')}`,
+				'Content-Type': 'application/json'
+			}
+		})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.error != null) {
+				dispatch(fetchProfileFailure(response.message[0].messages[0].id));
+				alert(response.message[0].messages[0].id);
+			} else {
+				dispatch(fetchProfileSuccess(response));
+			}
+		})
+		.catch((error) => console.error('error:', error));
+	};
+};
+
 
 export const fetchPosts = () => {
 	return (dispatch) => {

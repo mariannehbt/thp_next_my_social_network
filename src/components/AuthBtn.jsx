@@ -7,10 +7,10 @@ const AuthBtn = () => {
 	const dispatch = useDispatch();
 	const log = useSelector(state => state.log.login);
 	const register = useSelector(state => state.register.registration);
-	console.log(`log: ${log}`);
-	console.log(`reg: ${register}`);
-
-	console.log((log == null && register == null) ? 'login est null' : `login non null = ${log} & ${register} `);
+	const profile = useSelector(state => state.profile.profile);
+	// console.log(`log: ${log}`);
+	// console.log(`reg: ${register}`);
+	// console.log((log == null && register == null) ? 'login est null' : `login non null = ${log} & ${register} `);
 
 	if (log == null && register == null) {
 		return (
@@ -28,9 +28,11 @@ const AuthBtn = () => {
 		return (
 			<div className='btn-group' role='group'>
 				<button id='btnGroupDrop1' type='button' className='btn btn-secondary dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-					USERNAME
+					{(profile.username != null) ? profile.username : 'Welcome !'}
 				</button>
 				<div className='dropdown-menu w-100'>
+					<Link className='dropdown-item' to='/profile'>My Profile</Link>
+					<div className='dropdown-divider'></div>
 					<button className='dropdown-item' onClick={() => dispatch(API.logout())}>LogOut</button>
 				</div>
 			</div>

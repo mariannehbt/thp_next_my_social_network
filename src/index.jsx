@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 // Pages
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
 // Bootstrap & CSS
 import 'bootstrap/dist/css/bootstrap.css';
@@ -27,6 +28,9 @@ const App = () => {
 					</Route>
 					<Route exact path='/auth/local'>
 						<Login />
+					</Route>
+					<Route exact path='/profile'>
+						<Profile />
 					</Route>
 					<Route exact path='/auth/local/register'>
 						<SignIn />

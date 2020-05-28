@@ -8,9 +8,17 @@ const Profile = () => {
 	dispatch(API.fetchProfile());
 	
 	return (
-		<div className='container'>
-			<h1>Profile</h1>
-			<Me />
+		<div>
+			<section className='mb-5'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-8 mx-auto'>
+							<h1>Profile</h1>
+							<Me />
+						</div>
+					</div>
+				</div>
+			</section>
 		</div>
 	);
 };

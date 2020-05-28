@@ -15,7 +15,7 @@ const Header = () => {
 						<div className='w-100 text-white'>
 							<h1 className='display-3'>My Social Network</h1>
 							<p className='lead mb-0'>Welcome on My Social Network</p>
-							<button className='btn btn-outline-info mt-3' onClick={() => dispatch(API.fetchPosts())}>See posts</button>
+							<button className='btn btn-outline-info mt-3 mr-3' onClick={() => dispatch(API.fetchPosts())}>See posts</button>
 						</div>
 					</div>
 				</div>

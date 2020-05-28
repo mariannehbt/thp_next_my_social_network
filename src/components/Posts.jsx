@@ -41,27 +41,15 @@ const Posts = () => {
 
 	if (log == null && register == null) {
 		return (
-			<section className='mt-5'>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-md-8 mx-auto'>
-							{postsListVisitor}
-						</div>
-					</div>
-				</div>
-			</section>
+			<div className='mt-3'>
+				{postsListVisitor}
+			</div>
 		);
 	} else {
 		return (
-			<section className='mt-5'>
-				<div className='container'>
-					<div className='row'>
-						<div className='col-md-8 mx-auto'>
-							{postsList}
-						</div>
-					</div>
-				</div>
-			</section>
+			<div className='mt-3'>
+				{postsList}
+			</div>
 		);
 	};
 };

@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 const Posts = () => {
+	const log = useSelector(state => state.log.login);
 	const posts = useSelector(state => state.posts.posts);
+
+	console.log((log == null) ? 'login est null' : `login non null = ${log}`);
 
 	const postsList = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
 		<div key={key}>
@@ -24,17 +27,44 @@ const Posts = () => {
 		</div>
 	));
 
-	return (
-		<section className='mt-5'>
-			<div className='container'>
-				<div className='row'>
-					<div className='col-md-8 mx-auto'>
-						{postsList}
-					</div>
+	const postsListVisitor = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
+		<div key={key}>
+			<div className='card mb-3'>
+				<div className='card-body'>
+					<p className='card-text'>{post.text}</p>
+				</div>
+				<div className='card-footer'>
+					<p className='card-text'><small className='text-muted'>Last updated {moment(post.updated_at).fromNow()}</small></p>
 				</div>
 			</div>
-		</section>
-	);
+		</div>
+	));
+
+	if (log == null) {
+		return (
+			<section className='mt-5'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-8 mx-auto'>
+							{postsListVisitor}
+						</div>
+					</div>
+				</div>
+			</section>
+		);
+	} else {
+		return (
+			<section className='mt-5'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-8 mx-auto'>
+							{postsList}
+						</div>
+					</div>
+				</div>
+			</section>
+		);
+	};
 };
 
 export default Posts;

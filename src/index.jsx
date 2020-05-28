@@ -8,9 +8,10 @@ import store from './redux/store';
 // Components
 import Navbar from './components/Navbar';
 // Pages
-import Auth from './pages/Auth';
 import Home from './pages/Home';
+import Login from './pages/Login';
 import Posts from './pages/Posts';
+import SignIn from './pages/SignIn';
 import Users from './pages/Users';
 // Bootstrap & CSS
 import 'bootstrap/dist/css/bootstrap.css';
@@ -23,14 +24,17 @@ const App = () => {
 			<Router>
 				<Navbar />
 				<Switch>
-					<Route exact path='/auth'>
-						<Auth />
-					</Route>
 					<Route exact path='/'>
 						<Home />
 					</Route>
+					<Route exact path='/auth/local'>
+						<Login />
+					</Route>
 					<Route path='/posts'>
 						<Posts />
+					</Route>
+					<Route exact path='/auth/local/register'>
+						<SignIn />
 					</Route>
 					<Route path='/users'>
 						<Users />

@@ -10,9 +10,7 @@ import Navbar from './components/Navbar';
 // Pages
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Posts from './pages/Posts';
 import SignIn from './pages/SignIn';
-import Users from './pages/Users';
 // Bootstrap & CSS
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -30,14 +28,8 @@ const App = () => {
 					<Route exact path='/auth/local'>
 						<Login />
 					</Route>
-					<Route path='/posts'>
-						<Posts />
-					</Route>
 					<Route exact path='/auth/local/register'>
 						<SignIn />
-					</Route>
-					<Route path='/users'>
-						<Users />
 					</Route>
 				</Switch>
 			</Router>

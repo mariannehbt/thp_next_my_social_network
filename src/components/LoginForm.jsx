@@ -1,12 +1,15 @@
 import React from 'react';
 import * as API from '../services/api';
+import { useDispatch } from 'react-redux';
 
 const Login = () => {
+	const dispatch = useDispatch();
+
 	const submit = (event) => {
 		event.preventDefault();
 		const identifier = document.getElementById('identifier').value;
 		const password = document.getElementById('password').value;
-		API.login(identifier, password);
+		dispatch(API.login(identifier, password));
 	};
 
 	return(

@@ -14,15 +14,12 @@ const Navbar = () => {
 					<li className='nav-item active'>
 						<Link className='nav-link' to='/'>Home</Link>
 					</li>
-					<li className='nav-item'>
-						<Link className='nav-link' to='/posts'>Posts</Link>
-					</li>
 					<li className='nav-item dropdown'>
 						<Link className='nav-link dropdown-toggle' to='/auth' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Auth</Link>
 						<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-							<Link className='nav-link' to='/users'>Users</Link>
+							<Link className='nav-link' to='/auth/local/register'>SignIn</Link>
 							<div className='dropdown-divider'></div>
-							<Link className='nav-link' to='/auth'>Auth</Link>
+							<Link className='nav-link' to='/auth/local'>Login</Link>
 						</div>
 					</li>
 				</ul>

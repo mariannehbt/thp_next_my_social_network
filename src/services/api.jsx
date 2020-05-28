@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie';
-import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure } from '../redux/register/registerActions';
+import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure } from '../redux/login/loginActions';
+import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 
 
 export const register = (username, email, password) => {
@@ -33,11 +34,36 @@ export const register = (username, email, password) => {
 	};
 };
 
+export const login = (identifier, password) => {
+	const data = {
+		identifier: identifier,
+		password: password
+	};
 
-
-
-
-
+	return (dispatch) => {
+		dispatch(fetchLoginRequest());
+		fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.error != null) {
+				dispatch(fetchLoginFailure(response.message[0].messages[0].message));
+				alert(response.message[0].messages[0].message);
+			} else {
+				console.log(response.jwt);
+				Cookies.set('token', response.jwt);
+				console.log(Cookies.get('token'));
+				dispatch(fetchLoginSuccess(Cookies.get('token')));
+			}
+		})
+		.catch((error) => console.error('error:', error));
+	};
+};
 
 export const fetchPosts = () => {
 	return (dispatch) => {
@@ -52,32 +78,4 @@ export const fetchPosts = () => {
 			};
 		});
 	};
-};
-
-
-
-export const login = (identifier, password) => {
-	const data = {
-		identifier: identifier,
-		password: password
-	};
-
-	fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local', {
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-	.then((response) => response.json())
-	.then((response) => {
-		if (response.error != null) {
-			alert(response.message[0].messages[0].message);
-		} else {
-			Cookies.set('token', response.jwt);
-			console.log(response);
-		}
-	})
-	.catch((error) => console.error('error:', error));
-	console.log(data);
 };

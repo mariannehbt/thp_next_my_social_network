@@ -2,8 +2,8 @@ import { FETCH_REGISTER_REQUEST, FETCH_REGISTER_SUCCESS, FETCH_REGISTER_FAILURE 
 
 const initialState = {
 	loading: false,
-	registration: '',
-	error: ''
+	registration: null,
+	error: null
 };
 
 const registrationReducer = (state = initialState, action) => {

@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 
-const Posts = (props) => {
-	const posts = useSelector(state => state.posts);
+const Posts = () => {
+	const posts = useSelector(state => state.posts.posts);
 
 	const postsList = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
 		<div key={key}>

@@ -1,14 +1,11 @@
 import React from 'react';
-import { withAuth} from '../AuthContext';
 import Header from '../components/Header';
-import HomeContent from '../components/HomeContent';
 import Posts from '../components/Posts';
+import HomeContent from '../components/HomeContent';
 
-const Home = ({ auth }) => {
-	const reponse = ((auth.loggedIn === false) ? 'coucou' : 'bye');
+const Home = () => {
 	return (
 		<div>
-			<p>Hey, this is the first name : {reponse}</p>
 			<Header />
 			<Posts />
 			<HomeContent />
@@ -16,4 +13,4 @@ const Home = ({ auth }) => {
 	);
 };
 
-export default withAuth(Home);
+export default Home;

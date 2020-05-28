@@ -14,8 +14,8 @@ const Login = () => {
 			<h2>Login</h2>
 			<form onSubmit={submit}>
 				<div className='form-group'>
-					<input type='email' className='form-control' id='identifier' aria-describedby='emailHelp' placeholder='Identifier' />
-					<small id='emailHelp' className='form-text text-muted'>Username or Email</small>
+					<input type='text' className='form-control' id='identifier' aria-describedby='identifierHelp' placeholder='Identifier' />
+					<small id='identifierHelp' className='form-text text-muted'>Username or Email</small>
 				</div>
 				<div className='form-group'>
 					<input type='password' className='form-control' id='password' placeholder='Password' />

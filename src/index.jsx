@@ -2,8 +2,6 @@ import React from 'react';
 // React Router
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// Context
-import AuthContext from './AuthContext';
 // React Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -21,27 +19,25 @@ import './index.css'
 
 const App = () => {
 	return (
-		<AuthContext.Provider value={{ loggedIn: false }}>
-			<Provider store={store}>
-				<Router>
-					<Navbar />
-					<Switch>
-						<Route exact path='/auth'>
-							<Auth />
-						</Route>
-						<Route exact path='/'>
-							<Home />
-						</Route>
-						<Route path='/posts'>
-							<Posts />
-						</Route>
-						<Route path='/users'>
-							<Users />
-						</Route>
-					</Switch>
-				</Router>
-			</Provider>
-		</AuthContext.Provider>
+		<Provider store={store}>
+			<Router>
+				<Navbar />
+				<Switch>
+					<Route exact path='/auth'>
+						<Auth />
+					</Route>
+					<Route exact path='/'>
+						<Home />
+					</Route>
+					<Route path='/posts'>
+						<Posts />
+					</Route>
+					<Route path='/users'>
+						<Users />
+					</Route>
+				</Switch>
+			</Router>
+		</Provider>
 	);
 };
 

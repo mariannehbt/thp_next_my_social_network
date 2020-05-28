@@ -1,13 +1,16 @@
 import React from 'react';
 import * as API from '../services/api';
+import { useDispatch } from 'react-redux';
 
 const SignIn = () => {
+	const dispatch = useDispatch();
+
 	const submit = (event) => {
 		event.preventDefault();
 		const username = document.getElementById('username').value;
 		const email = document.getElementById('email').value;
 		const password = document.getElementById('password').value;
-		API.register(username, email, password);
+		dispatch(API.register(username, email, password));
 	};
 
 	return(

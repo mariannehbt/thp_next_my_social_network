@@ -1,5 +1,43 @@
 import Cookies from 'js-cookie';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
+import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure } from '../redux/register/registerActions';
+
+
+export const register = (username, email, password) => {
+	const data = {
+		username: username,
+		email: email,
+		password: password
+	};
+
+	return (dispatch) => {
+		dispatch(fetchRegisterRequest());
+		fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local/register', {
+			method: 'post',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.error != null) {
+				dispatch(fetchRegisterFailure(response.message[0].messages[0].message));
+				alert(response.message[0].messages[0].message);
+			} else {
+				dispatch(fetchRegisterSuccess(response.jwt));
+				Cookies.set('token', response.jwt);
+			}
+		})
+		.catch((error) => console.error('error:', error));
+	};
+};
+
+
+
+
+
+
 
 export const fetchPosts = () => {
 	return (dispatch) => {
@@ -16,34 +54,7 @@ export const fetchPosts = () => {
 	};
 };
 
-export const register = (username, email, password) => {
-	const data = {
-		username: username,
-		email: email,
-		password: password
-	};
 
-	fetch('https://api-minireseausocial.mathis-dyk.fr/auth/local/register', {
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(data)
-	})
-	.then((response) => response.json())
-	// Cookies.set('token', token)
-	.then((response) => {
-		if (response.error != null) {
-			alert(response.message[0].messages[0].message);
-		} else {
-			Cookies.set('token', response.jwt);
-			console.log(response);
-			// console.log(Cookies.get('token'))
-		}
-	})
-	.catch((error) => console.error('error:', error));
-	console.log(data);
-};
 
 export const login = (identifier, password) => {
 	const data = {
@@ -63,6 +74,7 @@ export const login = (identifier, password) => {
 		if (response.error != null) {
 			alert(response.message[0].messages[0].message);
 		} else {
+			Cookies.set('token', response.jwt);
 			console.log(response);
 		}
 	})

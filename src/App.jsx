@@ -1,8 +1,10 @@
 import React from 'react';
 // React Redux
-import { useSelector} from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 // React Router
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+// API
+import * as API from './services/api';
 // Components
 import Navbar from './components/Navbar';
 // Pages
@@ -14,6 +16,9 @@ import SignIn from './pages/SignIn';
 const App = () => {
 	const log = useSelector(state => state.log.login);
 	const register = useSelector(state => state.register.registration);
+
+	const dispatch = useDispatch();
+	dispatch(API.fetchProfile());
 
 	const checkAuth = () => {
 		return (

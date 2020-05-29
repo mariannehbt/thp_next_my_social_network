@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure, fetchUnregisterSuccess } from '../redux/register/registerActions';
 import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure, fetchLogoutSuccess } from '../redux/log/logActions';
 import { fetchProfileRequest, fetchProfileSuccess, fetchProfileFailure } from '../redux/profile/profileActions';
+import { fetchPostNewRequest, fetchPostNewSuccess, fetchPostNewFailure } from '../redux/postNew/postNewActions';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 
 export const register = (username, email, password) => {
@@ -88,6 +89,37 @@ export const fetchProfile = () => {
 			} else {
 				dispatch(fetchProfileSuccess(response));
 			}
+		})
+		.catch((error) => console.error('error:', error));
+	};
+};
+
+export const postNew = (text, user) => {
+	const data = {
+		text: text,
+		user: user
+	};
+
+	return (dispatch) => {
+		dispatch(fetchPostNewRequest());
+		console.log(data);
+		fetch('https://api-minireseausocial.mathis-dyk.fr/posts', {
+			method: 'post',
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('token')}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((response) => response.json())
+		.then((response) => {console.log(response)
+			// if (response.error != null) {
+			// 	dispatch(fetchLoginFailure(response.message[0].messages[0].message));
+			// 	alert(response.message[0].messages[0].message);
+			// } else {
+			// 	Cookies.set('token', response.jwt);
+			// 	dispatch(fetchLoginSuccess(Cookies.get('token')));
+			// }
 		})
 		.catch((error) => console.error('error:', error));
 	};

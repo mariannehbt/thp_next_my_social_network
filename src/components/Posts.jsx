@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as API from '../services/api';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
@@ -9,12 +10,11 @@ const Posts = () => {
 	const register = useSelector(state => state.register.registration);
 
 	const dispatch = useDispatch();
-
 	const postsList = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
 		<div key={key}>
 			<div className='card mb-3'>
 				<div className='card-body'>
-					<h5 className='card-title'>{(post.user) ? post.user.username : null}</h5>
+					<h5 className='card-title' onClick={() => dispatch(API.fetchUsers(post.user.id))}>{ (post.user) ? <Link to={`/user/${post.user.id}`}>{post.user.username}</Link> : null }</h5>
 					<p className='card-text'>{post.text}</p>
 					<button className='btn btn-info mr-2'>
 						Like

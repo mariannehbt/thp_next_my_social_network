@@ -6,6 +6,7 @@ import postsReducer from './posts/postsReducer.js';
 import profileReducer from './profile/profileReducer.js';
 import profileUpdateReducer from './profileUpdate/profileUpdateReducer.js'
 import registerReducer from './register/registerReducer.js';
+import usersReducer from './users/usersReducer.js'
 
 const rootReducer = combineReducers({
 	log: logReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
 	posts: postsReducer,
 	profile: profileReducer,
 	profileUpdate: profileUpdateReducer,
-	register: registerReducer
+	register: registerReducer,
+	users: usersReducer
 })
 
 export default rootReducer;

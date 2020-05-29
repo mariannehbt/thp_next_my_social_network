@@ -4,4 +4,4 @@ export { fetchPostNewRequest, fetchPostNewSuccess, fetchPostNewFailure } from '.
 export { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from './posts/postsActions';
 export { fetchProfileRequest, fetchProfileSuccess, fetchProfileFailure } from './profile/profileActions';
 export { fetchProfileUpdateRequest, fetchProfileUpdateSuccess, fetchProfileUpdateFailure } from './profileUpdate/profileUpdateActions';
-export { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure, fetchUnregisterSuccess } from './register/registerActions';
+export { fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure } from './users/usersActions';

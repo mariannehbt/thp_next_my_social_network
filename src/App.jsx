@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import SignIn from './pages/SignIn';
+import UserProfile from './pages/UserProfile';
 
 const App = () => {
 	const log = useSelector(state => state.log.login);
@@ -56,6 +57,9 @@ const App = () => {
 				<AuthRoute exact path='/profile' component={Profile} />
 				<Route exact path='/auth/local/register'>
 					{checkAuth() ? <Redirect to='/profile' /> : <SignIn />}
+				</Route>
+				<Route path={`/user/:userid`}>
+					<UserProfile />
 				</Route>
 			</Switch>
 		</Router>

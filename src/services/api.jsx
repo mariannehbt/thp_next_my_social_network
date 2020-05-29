@@ -6,6 +6,7 @@ import { fetchProfileUpdateRequest, fetchProfileUpdateSuccess, fetchProfileUpdat
 import { fetchPostDeleteRequest, fetchPostDeleteSuccess, fetchPostDeleteFailure } from '../redux/postDelete/postDeleteActions';
 import { fetchPostNewRequest, fetchPostNewSuccess, fetchPostNewFailure } from '../redux/postNew/postNewActions';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
+import { fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure } from '../redux/users/usersActions';
 
 export const register = (username, email, password) => {
 	const data = {
@@ -178,7 +179,6 @@ export const postDelete = (post) => {
 	};
 	return (dispatch) => {
 		dispatch(fetchPostDeleteRequest());
-		console.log(data);
 		fetch(`https://api-minireseausocial.mathis-dyk.fr/posts/${post}`, {
 			method: 'delete',
 			headers: {
@@ -189,12 +189,34 @@ export const postDelete = (post) => {
 		})
 		.then((response) => response.json())
 		.then((response) => {
-			console.log(response)
 			if (response.error != null) {
 				dispatch(fetchPostDeleteFailure(response.message));
 			} else {
 				dispatch(fetchPostDeleteSuccess(response));
 				dispatch(fetchPosts());
+			};
+		});
+	};
+};
+
+export const fetchUsers = (user) => {
+
+	return (dispatch) => {
+		dispatch(fetchUsersRequest());
+		fetch(`https://api-minireseausocial.mathis-dyk.fr/users/${user}`, {
+			method: 'get',
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('token')}`,
+				'Content-Type': 'application/json'
+			}
+		})
+		.then((response) => response.json())
+		.then((response) => {
+			if (response.error != null) {
+				dispatch(fetchUsersFailure(response.message));
+				alert(response.message);
+			} else {
+				dispatch(fetchUsersSuccess(response));
 			};
 		});
 	};

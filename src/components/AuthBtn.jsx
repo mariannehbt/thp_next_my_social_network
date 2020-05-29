@@ -8,9 +8,6 @@ const AuthBtn = () => {
 	const log = useSelector(state => state.log.login);
 	const register = useSelector(state => state.register.registration);
 	const profile = useSelector(state => state.profile.profile);
-	// console.log(`log: ${log}`);
-	// console.log(`reg: ${register}`);
-	// console.log((log == null && register == null) ? 'login est null' : `login non null = ${log} & ${register} `);
 
 	if (log == null && register == null) {
 		return (

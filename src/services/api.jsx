@@ -102,7 +102,6 @@ export const postNew = (text, user) => {
 
 	return (dispatch) => {
 		dispatch(fetchPostNewRequest());
-		console.log(data);
 		fetch('https://api-minireseausocial.mathis-dyk.fr/posts', {
 			method: 'post',
 			headers: {
@@ -112,14 +111,14 @@ export const postNew = (text, user) => {
 			body: JSON.stringify(data)
 		})
 		.then((response) => response.json())
-		.then((response) => {console.log(response)
-			// if (response.error != null) {
-			// 	dispatch(fetchLoginFailure(response.message[0].messages[0].message));
-			// 	alert(response.message[0].messages[0].message);
-			// } else {
-			// 	Cookies.set('token', response.jwt);
-			// 	dispatch(fetchLoginSuccess(Cookies.get('token')));
-			// }
+		.then((response) => {
+			if (response.error != null) {
+				dispatch(fetchPostNewFailure(response.message));
+				alert(response.message);
+			} else {
+				dispatch(fetchPostNewSuccess(response));
+				dispatch(fetchPosts());
+			}
 		})
 		.catch((error) => console.error('error:', error));
 	};

@@ -18,13 +18,20 @@ const App = () => {
 	const register = useSelector(state => state.register.registration);
 
 	const dispatch = useDispatch();
-	dispatch(API.fetchProfile());
 
 	const checkAuth = () => {
 		return (
 			(log == null && register == null) ? false : true
 		);
 	};
+
+	const getUser = () => {
+		return (
+			(checkAuth() === true) ? dispatch(API.fetchProfile()) : null
+		);
+	};
+
+	getUser();
 
 	const AuthRoute = ({ component: Component, ...rest }) => (
 		<Route {...rest} render={props => (

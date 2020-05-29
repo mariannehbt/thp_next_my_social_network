@@ -1,5 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import * as API from '../services/api';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
 const Posts = () => {
@@ -7,17 +8,20 @@ const Posts = () => {
 	const posts = useSelector(state => state.posts.posts);
 	const register = useSelector(state => state.register.registration);
 
+	const dispatch = useDispatch();
+
 	const postsList = posts.sort((a,b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()).map((post, key) => (
 		<div key={key}>
 			<div className='card mb-3'>
 				<div className='card-body'>
 					<h5 className='card-title'>{(post.user) ? post.user.username : null}</h5>
 					<p className='card-text'>{post.text}</p>
-					<button className='btn btn-outline-info mr-2'>Info</button>
-					<button className='btn btn-info'>
+					<button className='btn btn-info mr-2'>
 						Like
-						<span className='badge badge-light badge-pill ml-2'>{post.like}</span>
+						<span className='badge badge-light badge-pill mr-2'>{post.like}</span>
 					</button>
+					<button className='btn btn-outline-warning mr-2'>Info</button>
+					<button className='btn btn-outline-danger mr-2' onClick={() => dispatch(API.postDelete(post.id))}>Delete</button>
 				</div>
 				<div className='card-footer'>
 					<p className='card-text'><small className='text-muted'>Last updated {moment(post.updated_at).fromNow()}</small></p>

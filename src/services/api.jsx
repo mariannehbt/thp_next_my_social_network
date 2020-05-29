@@ -3,6 +3,7 @@ import { fetchRegisterRequest, fetchRegisterSuccess, fetchRegisterFailure, fetch
 import { fetchLoginRequest, fetchLoginSuccess, fetchLoginFailure, fetchLogoutSuccess } from '../redux/log/logActions';
 import { fetchProfileRequest, fetchProfileSuccess, fetchProfileFailure } from '../redux/profile/profileActions';
 import { fetchProfileUpdateRequest, fetchProfileUpdateSuccess, fetchProfileUpdateFailure } from '../redux/profileUpdate/profileUpdateActions';
+import { fetchPostDeleteRequest, fetchPostDeleteSuccess, fetchPostDeleteFailure } from '../redux/postDelete/postDeleteActions';
 import { fetchPostNewRequest, fetchPostNewSuccess, fetchPostNewFailure } from '../redux/postNew/postNewActions';
 import { fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure } from '../redux/posts/postsActions';
 
@@ -156,7 +157,6 @@ export const postNew = (text, user) => {
 	};
 };
 
-
 export const fetchPosts = () => {
 	return (dispatch) => {
 		dispatch(fetchPostsRequest());
@@ -167,6 +167,34 @@ export const fetchPosts = () => {
 				dispatch(fetchPostsFailure(response.message));
 			} else {
 				dispatch(fetchPostsSuccess(response));
+			};
+		});
+	};
+};
+
+export const postDelete = (post) => {
+	const data = {
+		post: post
+	};
+	return (dispatch) => {
+		dispatch(fetchPostDeleteRequest());
+		console.log(data);
+		fetch(`https://api-minireseausocial.mathis-dyk.fr/posts/${post}`, {
+			method: 'delete',
+			headers: {
+				'Authorization': `Bearer ${Cookies.get('token')}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(data)
+		})
+		.then((response) => response.json())
+		.then((response) => {
+			console.log(response)
+			if (response.error != null) {
+				dispatch(fetchPostDeleteFailure(response.message));
+			} else {
+				dispatch(fetchPostDeleteSuccess(response));
+				dispatch(fetchPosts());
 			};
 		});
 	};

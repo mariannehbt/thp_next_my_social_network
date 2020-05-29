@@ -11,17 +11,6 @@ const Navbar = () => {
 			</button>
 			<div className='collapse navbar-collapse' id='navbarSupportedContent'>
 				<ul className='navbar-nav mr-auto'>
-					<li className='nav-item active'>
-						<Link className='nav-link' to='/'>Home</Link>
-					</li>
-					<li className='nav-item dropdown'>
-						<Link className='nav-link dropdown-toggle' to='/auth' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>Auth</Link>
-						<div className='dropdown-menu' aria-labelledby='navbarDropdown'>
-							<Link className='nav-link' to='/auth/local/register'>SignIn</Link>
-							<div className='dropdown-divider'></div>
-							<Link className='nav-link' to='/auth/local'>Login</Link>
-						</div>
-					</li>
 				</ul>
 				<AuthBtn />
 			</div>

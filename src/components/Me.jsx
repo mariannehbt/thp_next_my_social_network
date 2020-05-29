@@ -1,13 +1,24 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import * as API from '../services/api';
+import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
 const Profile = () => {
 	const profile = useSelector(state => state.profile.profile);
 
+	const dispatch = useDispatch();
+
+	const submit = (event) => {
+		event.preventDefault();
+		const user = profile.id;
+		const username = document.getElementById('username').value;
+		const description = document.getElementById('description').value;
+		dispatch(API.profileUpdate(user, username, description));
+	};
+
 	return (
 		<div>
-			<form>
+			<form onSubmit={submit}>
 				<div className='form-row'>
 					<div className='col-md-4 mb-3'>
 						<label>Username</label>
@@ -15,24 +26,18 @@ const Profile = () => {
 							<div className='input-group-prepend'>
 								<span className='input-group-text'>@</span>
 							</div>
-							<input type='text' className='form-control' id='username' placeholder='Username' value={profile.username} />
-							<div className='valid-feedback'>
-								Looks good!
-							</div>
-							<div className='invalid-feedback'>
-								Please choose a username.
-							</div>
+							<input type='text' className='form-control' id='username' placeholder={(profile.username != null) ? profile.username : ''} />
 						</div>
 					</div>
 					<div className='col-md-8 mb-3'>
 						<label>Email</label>
-						<p className='form-control disabled'>{(profile.email != null) ? profile.email : 'Email'}</p>
+						<p className='form-control'>{(profile.email != null) ? profile.email : 'Email'}</p>
 					</div>
 				</div>
 				<div className='form-row'>
 					<div className='col-md-12 mb-3'>
 						<label>Description</label>
-						<textarea type='text' className='form-control' id='description' placeholder='Description' value={(profile.description != null) ? profile.description : ''} />
+						<textarea type='text' className='form-control' id='description' placeholder={(profile.description != null) ? profile.description : ''} />
 					</div>
 				</div>
 				<div className='form-row'>
@@ -45,7 +50,7 @@ const Profile = () => {
 						<p className='form-control'>{moment(profile.created_at).calendar()}</p>
 					</div>
 				</div>
-				<button className='btn btn-primary' type='submit'>Submit</button>
+				<button className='btn btn-info' type='submit'>Confirm changes</button>
 			</form>
 		</div>
 	);

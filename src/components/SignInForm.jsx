@@ -33,7 +33,7 @@ const SignIn = () => {
 				<div className='form-group'>
 					<input type='password' className='form-control' id='password' placeholder='Password' />
 				</div>
-				<button type='submit' className='btn btn-primary'>Submit</button>
+				<button type='submit' className='btn btn-info'>Submit</button>
 			</form>
 		</div>
 	);

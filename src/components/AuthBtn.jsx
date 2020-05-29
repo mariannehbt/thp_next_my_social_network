@@ -12,7 +12,7 @@ const AuthBtn = () => {
 	if (log == null && register == null) {
 		return (
 			<div className='btn-group' role='group'>
-				<button id='btnGroupDrop1' type='button' className='btn btn-secondary dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+				<button id='btnGroupDrop1' type='button' className='btn btn-info dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 					Connexion
 				</button>
 				<div className='dropdown-menu w-100'>
@@ -24,7 +24,7 @@ const AuthBtn = () => {
 	} else {
 		return (
 			<div className='btn-group' role='group'>
-				<button id='btnGroupDrop1' type='button' className='btn btn-secondary dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+				<button id='btnGroupDrop1' type='button' className='btn btn-info dropdown-toggle px-5' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
 					{(profile.username != null) ? profile.username : 'Welcome !'}
 				</button>
 				<div className='dropdown-menu w-100'>
